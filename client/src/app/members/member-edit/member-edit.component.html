@@ -1,0 +1,63 @@
+<div class="row">
+    <div class="col-sm-4">
+        <p class="font-weight-bold m-3">Your Profile</p>
+    </div>
+
+</div>
+<div class="row" *ngIf="member">
+
+    <div class="col-sm-12">
+        <div class="alert alert-info" *ngIf="editForm.dirty">
+            You have pending changes, any unsaved changes will be lost.
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card" >
+            <carousel *ngFor="let image of galleryImages">
+                <slide>
+                  <img src="{{galleryImages || './assets/user.png'}}" alt="{{member.knownAs}}" style="display: block; width: 100%;">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h3>{{member.knownAs}}</h3>
+                  </div>
+                </slide>
+              </carousel>
+            <div class="card-body">
+              <h5 class="card-title">{{member.knownAs}}</h5>
+              <p class="card-text"><strong>Age: </strong> {{member.age}}</p>
+              <p class="card-text"><strong>Gender: </strong> {{member.gender}}</p>
+              <p class="card-text"><strong>Location: </strong> {{member.city}}, {{member.country}}</p>
+              <p class="card-text"><strong>Member since: </strong> {{member.created}}</p>
+            </div>
+          </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-body">
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <input type="text" [(ngModel)]="member.city" class="form-control" id="city" name="city" aria-describedby="emailHelp" placeholder="eg:capetown">
+                  </div>
+                  <div class="form-group">
+                    <label for="country">Country:</label>
+                    <input type="text" [(ngModel)]="member.country" class="form-control" id="country" name="country" aria-describedby="emailHelp" placeholder="eg:country">
+                  </div>
+                <div class="form-group">
+                    <label for="introduction">Description:</label>
+                    <textarea class="form-control" [(ngModel)]="member.introduction" id="introduction" name="introduction" rows="3"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="lookingFor">Looking for:</label>
+                    <textarea class="form-control" [(ngModel)]="member.lookingFor" id="lookingFor" name="lookingFor" rows="3"></textarea>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="interests">Interests:</label>
+                    <textarea class="form-control" [(ngModel)]="member.interests" id="interests" name="interests" rows="3"></textarea>
+                  </div>
+                  <button class="btn btn-primary btn-block" [disabled]="!editForm.dirty" type="submit">Save Changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
