@@ -1,1 +1,44 @@
-<p>member-detail works!</p>
+<div class="row" *ngIf="member">
+    <div class="col-sm-4">
+        <div class="card" >
+            <carousel *ngFor="let image of galleryImages">
+                <slide>
+                  <img src="{{galleryImages || './assets/user.png'}}" alt="{{member.knownAs}}" style="display: block; width: 100%;">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h3>{{member.knownAs}}</h3>
+                  </div>
+                </slide>
+              </carousel>
+            <div class="card-body">
+              <h5 class="card-title">{{member.knownAs}}</h5>
+              <p class="card-text"><strong>Age: </strong> {{member.age}}</p>
+              <p class="card-text"><strong>Gender: </strong> {{member.gender}}</p>
+              <p class="card-text"><strong>Location: </strong> {{member.city}}, {{member.country}}</p>
+            </div>
+
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button class="btn btn-primary">Like</button>
+                    <button class="btn btn-success">Message</button>
+
+                </div>
+            </div>
+          </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text"><strong>Description: </strong></p>
+                <p>{{member.introduction}}</p>
+                <p class="card-text"><strong>Looking for: </strong></p>
+                <p>{{member.lookingFor}}</p>
+                <p class="card-text"><strong>Interests: </strong></p>
+                <p>{{member.interests}}</p>
+                <p class="card-text"><strong>Last Seen: </strong></p>
+                <p>{{member.lastActive}}</p>
+                <p class="card-text"><strong>Member since: </strong></p>
+                <p>{{member.created}}</p>
+            </div>
+        </div>
+    </div>
+</div>
